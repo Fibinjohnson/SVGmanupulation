@@ -1,0 +1,23 @@
+#mySvg {
+    position:absolute;
+}
+#miniMapContainer {
+    position: absolute;
+   margin-right: 300px;
+    right: 1px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+#miniMap {
+    width: 50%;
+    height: 50%;
+}
+
+#viewBoxRect {
+    fill:none;
+    stroke: red;
+    stroke-width: 2;
+    
+}
