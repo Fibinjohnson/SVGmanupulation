@@ -142,6 +142,16 @@ svg.addEventListener('contextmenu', function(event) {
     rect.setAttribute('width', '80');
     rect.setAttribute('height', '80');
     rect.setAttribute('fill', 'blue');
+    
+    const miniMapRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    miniMapRect.classList.add('minimap-rect');
+    miniMapRect.setAttribute('x', '30'); // Adjust the initial position
+    miniMapRect.setAttribute('y', '30'); // Adjust the initial position
+    miniMapRect.setAttribute('width', '80'); // Adjust the size
+    miniMapRect.setAttribute('height', '80'); // Adjust the size
+    miniMapRect.setAttribute('fill', 'blue');
+    miniMap.appendChild(miniMapRect);
+    
 
     svg.appendChild(rect);
     makeDraggable(rect);
