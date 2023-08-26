@@ -1,4 +1,5 @@
 # SVGmanupulation
+This project demonstrates SVG (Scalable Vector Graphics) manipulation using HTML, CSS, and JavaScript. The project allows you to interact with an SVG canvas, pan around, zoom in and out, and add draggable rectangles. Additionally, a mini map is provided to display both the entire SVG and the current viewing area.
 # Getting started
 Clone this repository to your local machine using:
 ## git clone https://github.com/your-username/svg-manipulation-project.git
