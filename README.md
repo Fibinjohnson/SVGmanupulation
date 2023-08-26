@@ -12,3 +12,12 @@ Clone this repository to your local machine using:
 
 4 A mini map displays both the entire SVG and the current viewing area.
 
+#USAGE
+## Open the application by running index.html in a web browser.
+
+-> Interact with the SVG canvas:
+
+ 1 Click and drag to pan around. 
+ 2 Use the scroll wheel to zoom in and out.
+ 3 Right-click to add draggable rectangles.
+ 4 The mini map in the bottom-right corner provides an overview of both the entire SVG and the current viewing area.
