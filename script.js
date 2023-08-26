@@ -143,13 +143,8 @@ svg.addEventListener('contextmenu', function(event) {
     rect.setAttribute('height', '80');
     rect.setAttribute('fill', 'blue');
     
-    const miniMapRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const miniMapRect = rect.cloneNode(true);
     miniMapRect.classList.add('minimap-rect');
-    miniMapRect.setAttribute('x', '30'); // Adjust the initial position
-    miniMapRect.setAttribute('y', '30'); // Adjust the initial position
-    miniMapRect.setAttribute('width', '80'); // Adjust the size
-    miniMapRect.setAttribute('height', '80'); // Adjust the size
-    miniMapRect.setAttribute('fill', 'blue');
     miniMap.appendChild(miniMapRect);
     
 
@@ -157,14 +152,35 @@ svg.addEventListener('contextmenu', function(event) {
     makeDraggable(rect);
     
 });
+
+function updateMiniMapRects() {
+    const scale = miniMap.viewBox.baseVal.width / svg.viewBox.baseVal.width;
+
+    const mainRects = svg.querySelectorAll('.draggable');
+    const miniMapRects = miniMap.querySelectorAll('.minimap-rect');
+
+    mainRects.forEach((mainRect, index) => {
+        const rectX = parseFloat(mainRect.getAttributeNS(null, 'x')) * scale;
+        const rectY = parseFloat(mainRect.getAttributeNS(null, 'y')) * scale;
+        const rectWidth = parseFloat(mainRect.getAttributeNS(null, 'width')) * scale;
+        const rectHeight = parseFloat(mainRect.getAttributeNS(null, 'height')) * scale;
+
+        const miniMapRect = miniMapRects[index];
+        miniMapRect.setAttribute('x', rectX);
+        miniMapRect.setAttribute('y', rectY);
+        miniMapRect.setAttribute('width', rectWidth);
+        miniMapRect.setAttribute('height', rectHeight);
+    });
+}
+
+
+
+updateMiniMapRects();
+
 function updateMiniMap() {
     const svgWidth = svg.viewBox.baseVal.width;
-    const svgHeight = svg.viewBox.baseVal.height;
-    
-    // Set MiniMap viewBox to match the main SVG
+    const svgHeight = svg.viewBox.baseVal.height; 
     miniMap.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
-    
-    // Update the position and size of the rectangle
     updateViewBoxRect();
 }
 function updateViewBoxRect() {
@@ -179,13 +195,78 @@ function updateViewBoxRect() {
     viewBoxRect.setAttribute('y', rectY);
     viewBoxRect.setAttribute('width', rectWidth);
     viewBoxRect.setAttribute('height', rectHeight);
-   
+
+    updateMiniMapRects();
 }
+
 function updateMiniMapOnPanZoom() {
     updateViewBoxRect();
+    updateMiniMapRects();
+    updateMinimapViewBox()
 }
+
 svg.addEventListener('mousemove', updateMiniMapOnPanZoom);
 svg.addEventListener('wheel', updateMiniMapOnPanZoom);
 
-// Call updateMiniMap to initialize the MiniMap
+function updateMinimapViewBox() {
+    const scale = miniMap.viewBox.baseVal.width / svg.viewBox.baseVal.width;
+    
+    const mainSvgX = viewBox[0] * scale;
+    const mainSvgY = viewBox[1] * scale;
+    const mainSvgWidth = svg.viewBox.baseVal.width * scale;
+    const mainSvgHeight = svg.viewBox.baseVal.height * scale;
+
+    miniMap.setAttribute('viewBox', `${mainSvgX} ${mainSvgY} ${mainSvgWidth} ${mainSvgHeight}`);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+``
 updateMiniMap();

@@ -1,5 +1,8 @@
 #mySvg {
     position:absolute;
+    border: 3px solid rgb(20, 15, 15);
+    stroke: rgb(1, 1, 1);
+   
 }
 #miniMapContainer {
     position: absolute;
@@ -7,7 +10,7 @@
     right: 1px;
     width: 200px;
     height: 200px;
-    border: 1px solid #000;
+    border: 3px solid #402a2a;
     overflow: hidden;
 }
 #miniMap {
@@ -19,5 +22,15 @@
     fill:none;
     stroke: red;
     stroke-width: 2;
+    width:200px;
+    height:200px;
+    
+}
+.header {
+    margin-left:90px ;
+}
+body {
+   
+    padding-left:150px;
     
 }
